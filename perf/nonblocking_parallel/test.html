@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Test script download in parallel and non blocking</title>
+	</head>
+	<body>
+		<div>This test shows how scripts downloaded paralelly and not blocking each other and redering but not execution order is different [race in condition] due to heavy content of script 2 </div>
+	</body>
+	<script type="text/javascript">
+		(function() {
+			var src = [
+				"script1.js",
+				"script2.js",
+				"script3.js",
+				"script4.js",
+				"script5.js"
+			],
+			len = src.length,
+			hd = document.getElementsByTagName("head")[0];
+
+			for(var i = 0; i < len; i++) {
+				var myscript=document.createElement("script");
+				myscript.setAttribute("src", src[i]);
+				myscript.setAttribute("type", "text/javascript");
+				hd.appendChild(myscript);
+			}
+		})();
+	</script>
+</html>
+
